@@ -1,0 +1,17 @@
+<!-- myapp/templates/myapp/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<title> Roda AI </title>
+</head>
+<body>
+<h1>AI Text Generator</h1>
+<form method="post" action="{% url 'generate_text' %}">
+{% csrf_token %}
+<label for="prompt">Enter your prompt:</label>
+<input type="text" id="prompt" name="prompt">
+<button type="submit">Generate</button>
+</form>
+<div id="result"></div>
+</body>
+</html>
