@@ -373,7 +373,3 @@ function bst_set_path(BrainstormHomeDir)
     userProcessDir = bst_get('UserProcessDir');
     addpath(userProcessDir, '-BEGIN');
 end
-
-
-
-
