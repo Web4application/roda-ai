@@ -3,7 +3,7 @@ import os
 
 INSTALLED_APPS = [
 ...
-'myapp',
+'Roda',
 ]
 
 # Add your OpenAI API key here
