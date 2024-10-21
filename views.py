@@ -4,7 +4,7 @@ from django.http import JsonResponse
 import openai
 from django.conf import settings
 
-openai.api_key = settings.OPENAI_API_KEY
+openai.AIzaSyAvrxOyAVzPVcnzxuD0mjKVDyS2bNWfC10 = settings.AIzaSyAvrxOyAVzPVcnzxuD0mjKVDyS2bNWfC10
 
 def generate_text(request):
 if request.method == 'POST':
