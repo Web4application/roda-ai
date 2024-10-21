@@ -10,12 +10,12 @@
 </head>
 <body>
 <div class="container">
-<h1>AI Text Generator</h1>
+<h1>Ask RODA</h1>
 <form id="aiForm" method="post" action="{% url 'generate_text' %}">
 {% csrf_token %}
 <label for="prompt">Enter your prompt:</label>
 <input type="text" id="prompt" name="prompt">
-<button type="submit">Generate</button>
+<button type="submit">Ask</button>
 </form>
 <div id="result"></div>
 </div>
