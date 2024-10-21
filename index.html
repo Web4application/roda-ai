@@ -2,10 +2,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> Roda AI </title>
+<title>Roda AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+background-color: #f0f0f0;
+}
+.container {
+background-color: #fff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+width: 90%;
+max-width: 400px;
+}
+h1 {
+text-align: center;
+}
+label, input, button {
+display: block;
+width: 100%;
+margin-bottom: 10px;
+}
+input, button {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+button {
+background-color: #007BFF;
+color: #fff;
+border: none;
+cursor: pointer;
+}
+button:hover {
+background-color: #0056b3;
+}
+</style>
 </head>
 <body>
-<h1>AI Text Generator</h1>
+<div class="container">
+<h1> Ask AI </h1>
 <form method="post" action="{% url 'generate_text' %}">
 {% csrf_token %}
 <label for="prompt">Enter your prompt:</label>
@@ -13,5 +57,6 @@
 <button type="submit">Generate</button>
 </form>
 <div id="result"></div>
+</div>
 </body>
 </html>
