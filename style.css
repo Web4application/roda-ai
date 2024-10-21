@@ -1,13 +1,13 @@
 /* Base styles */
 body {
 font-family: Arial, sans-serif;
-background-color: #f4f4f9;
+background-color: #663D00;
 margin: 0;
 padding: 0;
 }
 
 header {
-background-color: #4CAF50;
+background-color: #331f00;
 color: white;
 text-align: center;
 padding: 1em 0;
@@ -37,7 +37,7 @@ align-self: flex-end;
 }
 
 .ai-message {
-background-color: #f8d7da;
+background-color: #E7E6E6;
 align-self: flex-start;
 }
 
@@ -59,7 +59,7 @@ cursor: pointer;
 }
 
 button:hover {
-background-color: #45a049;
+background-color: #CB7A01;
 }
 
 main {
