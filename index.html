@@ -4,12 +4,24 @@
 <head>
 <title>Roda AI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* Your existing CSS here */
 </style>
+<script>
+function handleSubmit(event) {
+event.preventDefault(); // Prevent the form from submitting the traditional way
+const prompt = document.getElementById('prompt').value;
+const resultDiv = document.getElementById('result');
+
+// Simulate an AI text generation process
+resultDiv.innerHTML = `Generated text for prompt: "${prompt}"`;
+}
+</script>
 </head>
 <body>
 <div class="container">
-<h1> Ask AI </h1>
-<form method="post" action="{% url 'generate_text' %}">
+<h1>AI Text Generator</h1>
+<form id="aiForm" method="post" action="{% url 'generate_text' %}">
 {% csrf_token %}
 <label for="prompt">Enter your prompt:</label>
 <input type="text" id="prompt" name="prompt">
@@ -17,5 +29,8 @@
 </form>
 <div id="result"></div>
 </div>
+<script>
+document.getElementById('aiForm').addEventListener('submit', handleSubmit);
+</script>
 </body>
 </html>
