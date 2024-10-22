@@ -10,7 +10,7 @@ def generate_response(prompt):
 url = "https://api.your-ai-service.com/generate"
 headers = {
 "Content-Type": "application/json",
-"Authorization": "gG1uZhj50x1lYFKrrB5kT3BlbkFJXP3R63ExWT9lkcHI0pRq"
+"Authorization": "AIzaSyAvrxOyAVzPVcnzxuD0mjKVDyS2bNWfC10"
 }
 payload = {
 "prompt": prompt,
