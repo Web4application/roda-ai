@@ -15,4 +15,4 @@ prompt=prompt,
 max_tokens=150
 )
 return JsonResponse({'text': response.choices[0].text.strip()})
-return render(request, 'myapp/index.html')
+return render(request, 'index.html')
