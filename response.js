@@ -32,3 +32,4 @@ return response.json()
 prompt = "Tell me a story about a brave knight."
 response = generate_response(prompt)
 print(response)
+
