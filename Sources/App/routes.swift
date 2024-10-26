@@ -1,4 +1,3 @@
-// Sources/App/routes.swift
 import Vapor
 
 func routes(_ app: Application) throws {
@@ -25,3 +24,4 @@ func processAI(_ text: String) -> String {
 // Placeholder for AI processing logic
 return "Processed: \(text)"
 }
+
