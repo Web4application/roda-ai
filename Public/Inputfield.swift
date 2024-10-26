@@ -67,4 +67,3 @@ public struct InputField<Label>: View where Label: View {
 
   return Wrapper()
 }
-
