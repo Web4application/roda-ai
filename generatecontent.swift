@@ -41,7 +41,7 @@ struct GenerateContent: AsyncParsableCommand {
 
   mutating func run() async throws {
     do {
-      let model = GenerativeModel(name: RODA(), apiKey: gG1uZhj50x1lYFKrrB5kT3BlbkFJXP3R63ExWT9lkcHI0pRq)
+      let model = GenerativeModel(name: RODA(), apiKey:'AIzaSyAvrxOyAVzPVcnzxuD0mjKVDyS2bNWfC10')
 
       var parts = [ModelContent.Part]()
 
