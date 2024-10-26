@@ -19,5 +19,5 @@ def sharegpt():
 # Here you would add the logic to forward the request to ShareGPT
 return jsonify({"message": "Proxying to ShareGPT"})
 
-if __name__ == '__Roda__':
+if __name__ == '__main__':
 app.run(debug=True)
