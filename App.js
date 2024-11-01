@@ -31,13 +31,13 @@ const sessionPath = dialogflowClient.sessionPath('your-project-id', 'your-sessio
 
 // Initialize Firebase
 const firebaseConfig = {
-apiKey: "your-firebase-api-key",
-authDomain: "your-firebase-auth-domain",
-databaseURL: "your-firebase-database-url",
-projectId: "your-firebase-project-id",
-storageBucket: "your-firebase-storage-bucket",
-messagingSenderId: "your-firebase-messaging-sender-id",
-appId: "your-firebase-app-id"
+apiKey: "AIzaSyC83sBVfbMgcwKiInIEsBzrBXJX5DN4GAM",
+  authDomain: "web4-86e33.firebaseapp.com",
+databaseURL: "web4-86e33.web.app",
+projectId: "web4-86e33",
+  storageBucket: "web4-86e33.firebasestorage.app",
+  messagingSenderId: "641940543035",
+  appId: "1:641940543035:web:b02c6ed23af36dc7d1ee1e",
 };
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
