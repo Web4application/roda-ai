@@ -29,7 +29,7 @@ targets: [
 .target(name: "Run", dependencies: ["App"])
 ]
 )
-, package: "GoogleGenerativeAI"),
+, package: "roda"),
       ],
       path: "Sources"
     ),
