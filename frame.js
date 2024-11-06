@@ -1,3 +1,4 @@
+
 <iframe
   sandbox="allow-scripts allow-same-origin allow-popups allow-downloads allow-top-navigation allow-top-navigation-by-user-activation"
   style="right: 0; position: fixed; bottom: 0; display: flex; align-self: flex-end; background-color: transparent; border-width: 0px; colorScheme: light;"
@@ -10,12 +11,12 @@ window.onload = function () {
   const iframe = document.getElementById("adam-chat").contentWindow;
   const message = {
     color: {
-      agentTextColor: "#",
-      agentTextBackground: "#",
-      userTextColor: "#",
+      agentTextColor: "#f0fdff",
+      agentTextBackground: "#2e0917",
+      userTextColor: "#f7f7f7",
       userTextBackground: "#",
-      chatBackground: "#",
-      chatBoxForm: "#",
+      chatBackground: "#17170a",
+      chatBoxForm: "#151824",
     },
   };
 
@@ -23,13 +24,13 @@ window.onload = function () {
 };
 function notifyMe(noti) {
   if (Notification.permission === 'granted') {
-    new Notification('Live chat - StartAdam', {
+    new Notification('Live chat - RODAAi', {
       body: noti,
     });
   } else if (Notification.permission !== 'denied') {
     Notification.requestPermission().then(function(permission) {
       if (permission === 'granted') {
-        new Notification('Live chat - StartAdam', {
+        new Notification('Live chat - RODAAi', {
           body: noti,
         });
       }
