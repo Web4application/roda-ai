@@ -1,4 +1,6 @@
 import SwiftUI
+import AVFoundation
+import Speech
 
 @MainActor
 class FunctionCallingViewModel: ObservableObject {
