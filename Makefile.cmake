@@ -106,7 +106,6 @@ ifeq ($(GIT_VERSION),"")
 else
 	$(CC) $(CFLAGS) $(SANITY_FLAGS) -DGIT_FULL_VERSION=\"$(GIT_VERSION)\" $(SOURCE) -o $(OUTPUT)
 endif
-
 run: $(OUTPUT)
 	./$(OUTPUT)
 
