@@ -18,7 +18,7 @@ import PackageDescription
 let package = Package(
 name: "kubu-hai",
 dependencies: [
-.package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
+.package(url: "https://github.com/vapor/vapor.git", from: "4.0.5"),
 .package(url: "https://github.com/vapor/queues.git", from: "1.0.0")
 ],
 targets: [
