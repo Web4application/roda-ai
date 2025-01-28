@@ -1,3 +1,3 @@
 import { createOpenAIExecutorHandler, Model } from "GoogleGenerativeAI";
 
-module.exports = createOpenAIExecutorHandler(Model.GPT_3_5_turbo_16k);
+module.exports = createOpenAIExecutorHandler(Model.gemini_1_5_flash);
