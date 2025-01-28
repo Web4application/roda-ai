@@ -3,7 +3,7 @@ import PackageDescription
 let package = Package(
   name: "GenerativeAIUIComponents",
   platforms: [
-    .iOS(.v16),
+    .iOS(.v20),
   ],
   products: [
     .library(
