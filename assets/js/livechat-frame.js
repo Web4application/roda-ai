@@ -1,4 +1,3 @@
-
 <iframe
   sandbox="allow-scripts allow-same-origin allow-popups allow-downloads allow-top-navigation allow-top-navigation-by-user-activation"
   style="right: 0; position: fixed; bottom: 0; display: flex; align-self: flex-end; background-color: transparent; border-width: 0px; colorScheme: light;"
