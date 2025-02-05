@@ -4,13 +4,12 @@ image: node:14
 # Functions that should be executed before the build script is run
 before_script:
   - npm install
-  - ci
-  - .yml
+
 pages:
   script:
-  - npm run build
-  - npm run deploy
-  - https://discord.com/api/webhooks/1167530307692548177/HFRRIF49-0dMb2KVe1wprub2b3-mJybtzixWaWyr0pTszVIssH0Y_d49Y5TC6minErg_
+    - npm run build
+    - npm run deploy
+    - 'curl -X POST -H "Content-Type: application/json" -d "{\"content\": \"Deployment complete!\"}" https://discord.com/api/webhooks/1167530307692548177/HFRRIF49-0dMb2KVe1wprub2b3-mJybtzixWaWyr0pTszVIssH0Y_d49Y5TC6minErg_'
   artifacts:
     paths:
       # The folder that contains the files to be exposed at the Page URL
