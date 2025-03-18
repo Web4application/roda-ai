@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RODA AI</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" href="/assets/favicon.ico">
+</head>
+<body>
+    <!-- Main App Container -->
+    <div id="app">
+        <!-- Header -->
+        <header>
+            <h1>Welcome to RODA AI</h1>
+            <p>Your all-in-one interactive assistant</p>
+        </header>
+
+        <!-- Interaction Section -->
+        <section id="interaction-section">
+            <!-- User Input -->
+            <div id="user-input-container">
+                <input type="text" id="text-input" placeholder="Type your question here...">
+                <button id="submit-text">Submit</button>
+            </div>
+
+            <!-- Multimedia Input -->
+            <div id="multimedia-container">
+                <input type="file" id="file-input" accept="image/*" />
+                <button id="upload-button">Upload Image</button>
+            </div>
+
+            <!-- Speech Recognition -->
+            <div id="speech-container">
+                <button id="start-speech">Start Speech Recognition</button>
+                <p id="speech-feedback">Speech recognition feedback will appear here...</p>
+            </div>
+        </section>
+
+        <!-- Responses Section -->
+        <section id="response-section">
+            <div id="response-container">
+                <h2>RODA AI Responses</h2>
+                <div id="text-responses"></div>
+                <div id="image-responses"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 RODA AI. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script type="module" src="/assets/script.js"></script>
+</body>
+</html>
