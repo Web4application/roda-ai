@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-# Define Models
+# Define Models 
 class WeatherModel(nn.Module):
     def __init__(self):
         super(WeatherModel, self).__init__()
