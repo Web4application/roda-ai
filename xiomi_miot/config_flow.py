@@ -1,8 +1,11 @@
 from homeassistant import config_entries
 from homeassistant.core import callback
 import voluptuous as vol
+import logging
 
-from .const import DOMAIN, CONF_HOST, CONF_TOKEN
+from .const import DOMAIN, CONF_HOST, CONF_TOKEN, DEFAULT_POLLING_INTERVAL
+
+_LOGGER = logging.getLogger(__name__)
 
 class XiaomiConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Xiaomi integration."""
@@ -15,16 +18,16 @@ class XiaomiConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             # Validate the user input
-            valid = await self._validate_input(user_input)
+            valid, error_message = await self._validate_input(user_input)
             if valid:
                 return self.async_create_entry(title="Xiaomi Device", data=user_input)
             else:
-                errors["base"] = "invalid_credentials"
+                errors["base"] = error_message
 
-        # Define the schema for user input
+        # Provide tooltips and pre-filled defaults
         data_schema = vol.Schema({
-            vol.Required(CONF_HOST): str,
-            vol.Required(CONF_TOKEN): str,
+            vol.Required(CONF_HOST, description="Enter the device host address"): str,
+            vol.Required(CONF_TOKEN, description="Enter the authentication token"): str,
         })
 
         return self.async_show_form(
@@ -34,13 +37,38 @@ class XiaomiConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     async def _validate_input(self, data):
         """Validate the user input."""
         try:
-            # Example: Validate the token and host by connecting to the device
             host = data[CONF_HOST]
             token = data[CONF_TOKEN]
-            # Simulate a connection to the Xiaomi device
-            return True  # Replace with actual validation logic
-        except Exception:
-            return False
+            # Simulate validation logic (add actual device connection logic)
+            if not host or not token:
+                raise ValueError("Host or token is missing.")
+            return True, None
+        except Exception as ex:
+            _LOGGER.error(f"Validation failed: {ex}")
+            return False, "invalid_credentials"
+
+    async def async_step_discovery(self, user_input=None):
+        """Discover Xiaomi devices."""
+        errors = {}
+        discovered_devices = await self._discover_devices()
+        if not discovered_devices:
+            errors["base"] = "no_devices_found"
+            return self.async_abort(reason="no_devices_found")
+
+        if user_input is not None:
+            # Handle device selection
+            return self.async_create_entry(title=user_input["device"], data=user_input)
+
+        data_schema = vol.Schema({
+            vol.Required("device", description="Select a device"): vol.In(discovered_devices)
+        })
+
+        return self.async_show_form(step_id="discovery", data_schema=data_schema, errors=errors)
+
+    async def _discover_devices(self):
+        """Discover Xiaomi devices on the network."""
+        # Simulated device discovery (replace with actual implementation)
+        return ["Xiaomi Device 1", "Xiaomi Device 2", "Xiaomi Device 3"]
 
     @staticmethod
     @callback
@@ -61,7 +89,8 @@ class XiaomiOptionsFlowHandler(config_entries.OptionsFlow):
             return self.async_create_entry(title="", data=user_input)
 
         options_schema = vol.Schema({
-            vol.Optional("option_1", default=True): bool,
+            vol.Optional("polling_interval", default=DEFAULT_POLLING_INTERVAL): int,
+            vol.Optional("language", default="en"): str,
         })
 
         return self.async_show_form(step_id="init", data_schema=options_schema)
