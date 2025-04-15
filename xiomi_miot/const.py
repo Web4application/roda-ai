@@ -1,4 +1,4 @@
-DOMAIN = "web4"  # The domain for this integration
+DOMAIN = "web4 integration"  # The domain for this integration
 PLATFORMS = ["light", "switch", "sensor"]  # Platforms supported by the integration
 
 CONF_HOST = "host"
