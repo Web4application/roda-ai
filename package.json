@@ -132,3 +132,6 @@
     "startCommand": "pnpm --filter='./packages/vite' run dev"
   }
 }
+"scripts": {
+  "start": "node server.js"
+}
