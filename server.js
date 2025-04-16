@@ -1,19 +1,15 @@
-// Import the http module
-const http = require('http');
+const express = require('express');
+const bodyParser = require('body-parser');
+const analyzeRoute = require('./api/analyze');
+const { port } = require('./config');
+const botClient = require('./bot');
 
-// Define the port to listen on
-const PORT = 8000;
+const app = express();
+app.use(bodyParser.json());
+app.use('/api', analyzeRoute);
 
-// Create the server
-const server = http.createServer((req, res) => {
-  // Set the response header with status and content type
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  
-  // Send the response body
-  res.end('Hello, World!\n');
+app.listen(port, () => {
+  console.log(`API Server listening at http://localhost:${port}`);
 });
 
-// Make the server listen on the specified port
-server.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
+botClient.login(process.env.DISCORD_TOKEN);
