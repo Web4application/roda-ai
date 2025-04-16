@@ -19,12 +19,24 @@ router.post('/analyze', async (req, res) => {
       }
     });
 
+    const analysisLogs = []; // You can move this to a separate service later
+
+router.post('/analyze', async (req, res) => {
+  const { text } = req.body;
+  try {
+    // OpenAI call...
     const analysis = response.data.choices[0].message.content.trim();
+
+    // Store the result
+    analysisLogs.push({ text, analysis, timestamp: Date.now() });
+
     res.json({ analysis });
   } catch (error) {
-    console.error('Error analyzing text with OpenAI:', error.message);
     res.status(500).json({ error: 'Failed to analyze text' });
   }
 });
 
-module.exports = router;
+// Expose a new route for UI to pull analysis logs
+router.get('/history', (req, res) => {
+  res.json(analysisLogs);
+});
