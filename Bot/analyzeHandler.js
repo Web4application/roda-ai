@@ -15,3 +15,8 @@ module.exports = async function handleAnalyzeCommand(message) {
     message.channel.send('Sorry, I couldn\'t analyze the text at the moment.');
   }
 };
+const handleAnalyzeCommand = require('./bot/analyzeHandler');
+
+if (message.content.startsWith('!analyze')) {
+  await handleAnalyzeCommand(message);
+}
