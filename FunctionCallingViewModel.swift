@@ -16,7 +16,7 @@ class FunctionCallingViewModel: ObservableObject {
 
     init() {
         model = GenerativeModel(
-            name: "gemini-1.5-flash-latest",
+            name: "Roda",
             apiKey: APIKey.default,
             tools: [Tool(functionDeclarations: [
                 FunctionDeclaration(
