@@ -97,8 +97,22 @@ function handleUserInput(input, responseContainer) {
 
     responseContainer.appendChild(aiResponse);
 
-    // Simulate a delay for the AI response
-    setTimeout(() => {
-        aiResponse.textContent = `RODA AI: I received your message: "${input}". How can I assist further?`;
-    }, 2000);
-}
+ // Call FastAPI for actual prediction
+fetch("http://localhost:8000/predict", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ features: input.split(" ") })  // Adjust this depending on your model input
+})
+.then(response => response.json())
+.then(data => {
+    if (data.prediction !== undefined) {
+        aiResponse.textContent = `RODA AI: ${data.prediction}`;
+    } else {
+        aiResponse.textContent = `Error: ${data.error}`;
+    }
+})
+.catch(error => {
+    aiResponse.textContent = "An error occurred: " + error;
+});
