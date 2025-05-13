@@ -56,4 +56,3 @@ const prompt = "### Fantasy
 
 const result = await model.generateContent(prompt);
 console.log(result.response.text());
-
