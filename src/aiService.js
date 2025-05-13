@@ -1,69 +1,38 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import axios from "axios";
 import dotenv from "dotenv";
 import { logInfo, logError } from "./logger.js";
+import { extractKeywords } from "./dataProcessor.js";
 
 dotenv.config();
 
 const apiKey = process.env.GOOGLE_GENERATIVE_AI_KEY;
-const environment = process.env.ENVIRONMENT || "production";
-
-if (!apiKey) {
-  logError("API Key is missing", new Error("Missing API Key"));
-  process.exit(1);
-}
-
 const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-// Cache structure
-const cache = new Map();
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
-
 /**
- * Fetch data with retry logic.
- * @param {Function} fn - The function to execute.
- * @param {number} retries - Number of retry attempts.
+ * Generate content and log metrics.
  */
-async function withRetry(fn, retries = 3) {
-  for (let i = 0; i < retries; i++) {
+export async function generateContent(prompts) {
+  let content = [];
+  const startTime = Date.now();
+
+  for (const prompt of prompts) {
     try {
-      return await fn();
+      const response = await model.generateContent(prompt);
+      const result = response.response?.text() || "No content generated.";
+
+      const keywords = extractKeywords(result);
+      content.push({ prompt, content: result, keywords });
+
+      logInfo(`Generated content for prompt: "${prompt}"`);
+
     } catch (error) {
-      logError(`Retry ${i + 1} failed`, error);
-      if (i === retries - 1) throw error;
+      logError(`Error generating content for prompt: "${prompt}"`, error, "GENERATION_ERROR");
     }
   }
-}
 
-/**
- * Generates content using Google Generative AI with caching and retry logic.
- * @param {string} prompt - The input prompt.
- * @returns {Promise<string>}
- */
-export async function generateContent(prompt) {
-  const cacheKey = prompt;
-  const cachedData = cache.get(cacheKey);
+  const endTime = Date.now();
+  logInfo(`Total execution time: ${(endTime - startTime) / 1000}s`);
 
-  if (cachedData && Date.now() - cachedData.timestamp < CACHE_TTL) {
-    logInfo("Returning cached data");
-    return cachedData.content;
-  }
-
-  try {
-    const response = await withRetry(() => model.generateContent(prompt));
-    const content = response.response?.text();
-
-    if (!content) {
-      throw new Error("Empty response from the model.");
-    }
-
-    cache.set(cacheKey, { content, timestamp: Date.now() });
-    logInfo("Content generated successfully");
-    return content;
-
-  } catch (error) {
-    logError("Error generating content", error);
-    return `Error: ${error.message}`;
-  }
+  return content;
 }
