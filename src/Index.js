@@ -1,25 +1,46 @@
 import { generateContent } from "./aiService.js";
-
-// Define a comprehensive prompt
-const prompt = `
-### Fantasy
-1. "Describe a world where the seasons are controlled by mythical creatures."
-2. "A young wizard discovers an ancient spellbook that can alter reality."
-3. "A dragon and a knight form an unlikely alliance to save their kingdom."
-
-### Science Fiction
-1. "Write about a future where humans can upload their consciousness into a digital world."
-2. "In a world where time travel is possible, a historian accidentally changes a major event in history."
-3. "In a future where humans live on Mars, a scientist discovers a hidden alien civilization."
-`;
+import { saveAsText, saveAsJson, saveAsCsv } from "./fileHandler.js";
+import readline from "readline";
+import { logInfo } from "./logger.js";
 
 /**
- * Main function to initiate content generation.
+ * Prompt user for input.
  */
-async function main() {
-  console.log("[INFO] Generating content...");
-  const content = await generateContent(prompt);
-  console.log("\nGenerated Content:\n", content);
+function getUserInput() {
+  return new Promise((resolve) => {
+    const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+    rl.question("Enter prompts separated by ';': ", (input) => {
+      const prompts = input.split(";").map(p => p.trim()).filter(Boolean);
+      rl.question("Enter output format (txt/json/csv): ", (format) => {
+        rl.question("Enter output filename: ", (filename) => {
+          rl.close();
+          resolve({ prompts, format, filename });
+        });
+      });
+    });
+  });
 }
 
-main();
+(async () => {
+  try {
+    const { prompts, format, filename } = await getUserInput();
+    const content = await generateContent(prompts);
+
+    switch (format.toLowerCase()) {
+      case "txt":
+        await saveAsText(JSON.stringify(content, null, 2), `${filename}.txt`);
+        break;
+      case "json":
+        await saveAsJson(content, `${filename}.json`);
+        break;
+      case "csv":
+        await saveAsCsv(content, `${filename}.csv`);
+        break;
+      default:
+        console.log("Invalid format. Please choose txt, json, or csv.");
+    }
+  } catch (error) {
+    console.error("An unexpected error occurred:", error.message);
+  }
+})();
+
