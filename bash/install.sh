@@ -3,3 +3,8 @@ npx serve ./UI
 # or
 python3 -m http.server 5000
 pip install -r requirements.txt
+brew install swift
+brew install vapor/tap/vapor
+vapor new MyAIProject
+cd MyAIProject
+swift run
