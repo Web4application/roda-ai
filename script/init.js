@@ -11,10 +11,10 @@ const {
 } = require("@google/generative-ai");
 
 const apiKey = process.env.GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(AIzaSyDMqMlf92Nhxd7-EzRsWRwtsycxbDzFpkA);
+const genAI = new GoogleGenerativeAI(AIzaSyDMqMlf92Nhxd7EzRsWRwtsycxbDzFpkA);
 
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-pro",
+  model: "roda",
   tools: [
     {
       functionDeclarations: [
