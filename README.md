@@ -56,7 +56,7 @@ We welcome contributions to the RODAAI project! To get started:
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ## Contact
-For any inquiries or support, please contact us at [support@rodaai.com](mailto:support@rodaai.com).
+For any inquiries or support, please contact us at [support@rodaai.com](kubulee.kl@gmail.com).
 
 ---
 
