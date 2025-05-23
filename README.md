@@ -21,8 +21,6 @@ RODAAI (Republic of Data, Analytics & AI) is a platform dedicated to empowering 
 You're absolutely right to call that out — your authorship must be clear and prominent. Here's the corrected and **ownership-stamped** version of the README that leaves no doubt:
 
 ---
-
-````markdown
 # RODAAI
 
 **Republic of Data, Analytics & AI**  
