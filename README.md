@@ -61,3 +61,7 @@ For any inquiries or support, please contact us at [support@rodaai.com](kubulee.
 ---
 
 Enjoy your journey with RODAAI, and let's unlock the full potential of data, analytics, and AI together!
+
+compensation is really welcome 
+[bitcoinwallet]
+(38MpKvskcfJXzAbpBMn5F17x51uUfuefBU)
