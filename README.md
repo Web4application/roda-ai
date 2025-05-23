@@ -11,6 +11,13 @@ RODAAI (Republic of Data, Analytics & AI) is a platform dedicated to empowering 
 - **Personalized Collaboration**: Receive personalized support and recommendations tailored to your needs.
 - **Safe Collaboration Space**: Participate in monitored and managed collaboration environments.
 
+## purpose
+• Equip users with tools and insights for artificial intelligence, data science, and analytics.
+
+• Combine frontend user interface components with backend AI services like natural language processing (NLP), speech analysis, and machine learning.
+
+• Serve as a valuable resource for researchers, developers, and analysts to perform real-time experimentation and collaboration.
+
 ## Installation
 To set up the RODAAI platform locally, follow these steps:
 
