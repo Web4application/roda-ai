@@ -1,11 +1,18 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const analyzeRoute = require('./api/analyze');
+const { port } = require('./config');
+const botClient = require('./bot');
 const { MongoClient } = require('mongodb');
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
+app.use('/api', analyzeRoute);
 
+// Mongo connection URI
 const username = encodeURIComponent(process.env.MONGO_USERNAME);
 const password = encodeURIComponent(process.env.MONGO_PASSWORD);
 const cluster = process.env.MONGO_CLUSTER;
@@ -28,6 +35,9 @@ app.get('/api/data', async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`API server running at http://localhost:${process.env.PORT}`);
+app.listen(port, () => {
+  console.log(`API server running at http://localhost:${port}`);
 });
+
+// Start bot after server
+botClient.login(process.env.DISCORD_TOKEN);
