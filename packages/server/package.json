@@ -18,3 +18,13 @@
     "nodemon": "^3.1.0"
   }
 }
+
+"workspaces": [
+  "packages/*"
+]
+
+"scripts": {
+  ...
+  "dev:server": "pnpm --filter=@yourorg/server dev",
+  "start:server": "pnpm --filter=@yourorg/server start"
+}
