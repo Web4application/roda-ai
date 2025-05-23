@@ -4,13 +4,11 @@ import os
 import subprocess
 from shutil import copyfile
 from typing import Dict, Any
-
 from pyhttpd.certs import CertificateSpec
 from pyhttpd.conf import HttpdConf
 from pyhttpd.env import HttpdTestEnv, HttpdTestSetup
 
 log = logging.getLogger(__name__)
-
 
 class H2TestSetup(HttpdTestSetup):
 
@@ -40,7 +38,7 @@ class H2TestSetup(HttpdTestSetup):
             fd.write(f"LoadModule h2test_module   \"{local_dir}/mod_h2test/.libs/mod_h2test.so\"\n")
 
     def _setup_data_1k_1m(self):
-        s90 = "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678\n"
+        s90 ="01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678\n"
         with open(os.path.join(self.env.gen_dir, "data-1k"), 'w') as f:
             for i in range(10):
                 f.write(f"{i:09d}-{s90}")
