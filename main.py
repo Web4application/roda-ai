@@ -15,6 +15,12 @@ from fastai.callback.progress import ProgressCallback
 from accelerate import Accelerator
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 import wandb
+from fastapi import FastAPI
+from api.projectpilot_routes import router as projectpilot_router
+
+app = FastAPI()
+
+app.include_router(projectpilot_router)
 
 __all__ = [
     'ParallelTrainer', 'setup_distrib', 'teardown_distrib', 
