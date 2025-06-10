@@ -8,3 +8,7 @@ git push origin main
 pip install -r requirements.txt
 npx create-liveblocks-app@latest --init --framework react
 git clone https://github.com/QUBUHUB-repos/RODA-AI-Web.git
+git clone https://github.com/Web4application/RODAAI.git
+cd RODAAI
+cp .env.example .env
+docker-compose up --build
