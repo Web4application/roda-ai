@@ -70,3 +70,4 @@ disp(['Test accuracy: ', num2str(accuracy)]);
 
 # Save the trained model
 save('kubu_hai_model.mat', 'net');
+
