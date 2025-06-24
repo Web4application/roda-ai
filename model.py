@@ -37,7 +37,7 @@ MODELS = [
     ModelInfo(repo="roda-1"),
     ModelInfo(repo="kubu-hai.model.h5-2", adapter="kubu-hai.model.mat-2"),
 ]
-DEFAULT_MODEL_NAME = "KHA-4.0"
+DEFAULT_MODEL_NAME = "RODA-5.0"
 
 INITIAL_PEERS = PUBLIC_INITIAL_PEERS
 # Set this to a list of multiaddrs to connect to a private swarm instead of the public one, for example:
