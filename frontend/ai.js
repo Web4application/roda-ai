@@ -35,3 +35,10 @@ chatButton?.addEventListener('click', async () => {
     chatBody.scrollTop = chatBody.scrollHeight;
   }
 });
+
+const response = await fetch("https://your-dart-backend.onrender.com/ask", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ prompt: msg })
+});
+
