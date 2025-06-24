@@ -1,27 +1,32 @@
+// main.swift or configure in your Vapor project routes
+
 import Vapor
 
+struct AIRequest: Content {
+    let prompt: String
+}
+
+struct AIResponse: Content {
+    let response: String
+}
+
 func routes(_ app: Application) throws {
-app.get { req in
-req.fileio.streamFile(at: app.directory.publicDirectory + "index.html")
-}
+    app.get("health") { _ in
+        "Vapor server up and running"
+    }
 
-app.post("ai") { req -> EventLoopFuture<Response> in
-let input = try req.content.decode(Input.self)
-let aiResponse = processAI(input.text)
-return req.eventLoop.makeSucceededFuture(Response(message: aiResponse))
-}
-}
+    app.post("generate") { req async throws -> AIResponse in
+        let aiRequest = try req.content.decode(AIRequest.self)
+        let rodaURL = URI(string: "http://localhost:8000/api/generate")
 
-struct Input: Content {
-let text: String
-}
+        // Prepare outbound request to RODA backend
+        let client = req.client
+        let rodaResponse = try await client.post(rodaURL) { req in
+            try req.content.encode(aiRequest)
+        }
 
-struct Response: Content {
-let message: String
+        // Decode RODA response
+        let decodedResponse = try rodaResponse.content.decode(AIResponse.self)
+        return decodedResponse
+    }
 }
-
-func processAI(_ text: String) -> String {
-// Placeholder for AI processing logic
-return "Processed: \(text)"
-}
-
