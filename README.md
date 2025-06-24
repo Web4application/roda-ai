@@ -31,7 +31,7 @@ You're absolutely right to call that out — your authorship must be clear and p
 ## Creator
 
 **Developed and maintained by [Kubu Lee](https://github.com/Web4application)**  
-*AI & Web3 Developer | Founder of RODAAI*
+*AI & Web4 Developer | Founder of RODAAI*
 
 RODAAI is your declaration of independence in the algorithmic age — built from the ground up to serve developers, analysts, and citizens of a data-driven world.
 
