@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 // Discord bot setup
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
-const discordToken = '1156354267817447486';
+const discordToken = 'MTIwODM4MDQwOTgxNDE4ODA0Mg.GufPW0.G5hGQ93fQrlbTodsc7iL_9RKow7l8u2gEXazKQ';
 const openaiApiKey = 'AIzaSyAvrxOyAVzPVcnzxuD0mjKVDyS2bNWfC10';
 
 client.once('ready', () => {
