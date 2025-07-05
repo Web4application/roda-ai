@@ -1,0 +1,115 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at center, #0f0f2e, #050512);
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+
+.container {
+  text-align: center;
+  margin-top: 15vh;
+  z-index: 2;
+  position: relative;
+}
+
+.highlight {
+  color: #4af7ff;
+  font-weight: bold;
+}
+
+.tagline {
+  color: #aaa;
+  margin-bottom: 30px;
+}
+
+.primary-button {
+  background: #4af7ff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.primary-button:hover {
+  background: #3cd1db;
+}
+
+#particles-background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.2;
+  z-index: 0;
+}
+
+/* Chat Widget */
+#chat-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  background: #1a1a2e;
+  border: 1px solid #4af7ff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 3;
+}
+
+#chat-widget.hidden {
+  display: none;
+}
+
+.chat-header {
+  background: #0f0f2e;
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #4af7ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-body {
+  padding: 10px;
+  height: 200px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  background: #111120;
+}
+
+.chat-input {
+  display: flex;
+  padding: 8px;
+  background: #0f0f2e;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.chat-input button {
+  background: #4af7ff;
+  border: none;
+  padding: 6px 12px;
+  margin-left: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #000;
+}
+
+.chat-input button:hover {
+  background: #3cd1db;
+}
