@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RODA Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <script defer src="ai.js"></script>
+</head>
+<body>
+  <div id="particles-background"></div>
+  <div class="container">
+    <h1>👋 Welcome to <span class="highlight">RODA</span></h1>
+    <p class="tagline">Your Reactive Online Developer Assistant for Web4 & Blockchain projects.</p>
+    <button class="primary-button" onclick="launchAssistant()">🧠 Open Assistant</button>
+  </div>
+
+  <div id="chat-widget" class="hidden">
+    <div class="chat-header">🤖 RODA Assistant <button onclick="closeAssistant()">×</button></div>
+    <div class="chat-body">
+      <p><strong>RODA:</strong> Hello! I'm here to assist with your project.</p>
+    </div>
+    <div class="chat-input">
+      <input type="text" placeholder="Ask me anything..." />
+      <button>Send</button>
+    </div>
+  </div>
+</body>
+</html>
