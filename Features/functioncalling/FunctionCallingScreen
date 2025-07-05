@@ -1,0 +1,18 @@
+struct FunctionCallingScreen: View {
+    @EnvironmentObject var viewModel: FunctionCallingViewModel
+
+    var body: some View {
+        VStack {
+            TextField("Ask a question with a function call...", text: $viewModel.input)
+                .textFieldStyle(.roundedBorder)
+                .padding()
+
+            Button("Call") {
+                viewModel.callFunction()
+            }
+
+            Text(viewModel.response)
+                .padding()
+        }
+    }
+}
