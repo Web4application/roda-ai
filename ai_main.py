@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 import tensorflow as tf
 from transformers import pipeline
-from api.routes import router as projectpilot_router
+from api.routes import router
 
 # Load dataset for prediction AI
 data = load_iris()
