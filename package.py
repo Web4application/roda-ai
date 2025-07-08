@@ -2,8 +2,8 @@
 import PackageDescription
 
 let package = Package(
-    name: "MyVaporApp",
-    platforms: [.macOS(.v12)],
+    name: "rodaai",
+    platforms: [.macOS(.v13)],
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0")
     ],
