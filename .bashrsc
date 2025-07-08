@@ -1,4 +1,2 @@
-git clone https://github.com/Web4application/enclov-AI.git
-cd enclov-AI
-
-docker-compose up --build
+export CLOUDFLARE_ACCOUNT_ID="3c2d8a9226729b067992b8515d7c2a75"
+export CLOUDFLARE_API_TOKEN="aVZM8HSx1|rFNqUj7Zmo_3ZkAMUwxju|4QUHcStS"
