@@ -1,6 +1,6 @@
 git clone https://github.com/Web4application/RODAAI.git
 cd RODAAI
-cp .env.example .env
+cp .env.local .env
 docker-compose up --build
 
 git clone https://github.com/Web4application/enclov-AI.git
