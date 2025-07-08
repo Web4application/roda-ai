@@ -1,0 +1,11 @@
+name: roda_backend
+version: 1.0.0
+description: A backend API server for RODA Assistant
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  shelf: ^1.4.0
+  shelf_router: ^1.1.4
+  shelf_cors_headers: ^0.2.0
