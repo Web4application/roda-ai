@@ -1,3 +1,5 @@
+# myapp/train_test.py
+
 import torch
 from fastai.vision.all import cnn_learner, resnet34, accuracy, ImageDataLoaders
 from web4ai.distributed import train_with_checkpointing, setup_distrib, teardown_distrib
