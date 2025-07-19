@@ -1,4 +1,4 @@
-myapp/train_model.py
+# myapp/train_model.py
 
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
