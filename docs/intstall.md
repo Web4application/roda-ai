@@ -4,7 +4,11 @@
 
 git clone https://github.com/Web4application/RODAAI.git
 cd RODAAI
+
+```
 # Follow FastAPI + Docker + PostgreSQL setup instructions here
+
+```bash
 
 import openai
 import os
