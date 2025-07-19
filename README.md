@@ -167,9 +167,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For any inquiries or support, please contact us at [support@rodaai.com](kubulee.kl@gmail.com).
 
 --- 
-[talk to RODAAI](https://aistudio.instagram.com/ai/593244253613520/?utm_source=mshare)!
-
-
+[talk to RODAAI](https://aistudio.instagram.com/ai/593244253613520/?utm_source=mshare)![image.JPG](https://raw.githubusercontent.com/Web4application/rodaai/refs/heads/main/Image.JPG)
 
 
 Enjoy your journey with RODAAI, and let's unlock the full potential of data, analytics, and AI together!
