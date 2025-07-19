@@ -41,4 +41,3 @@ const response = await fetch("https://your-dart-backend.onrender.com/ask", {
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ prompt: msg })
 });
-
