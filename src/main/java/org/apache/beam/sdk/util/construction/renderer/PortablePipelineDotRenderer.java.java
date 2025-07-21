@@ -114,6 +114,6 @@ class PortablePipelineDotRenderer {
   }
 
   private static String escapeString(String x) {
-    return x.replace("\"", "\\\"");
+    return x.replace("\"", "\\\""");
   }
 }
