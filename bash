@@ -1,6 +1,7 @@
 git clone https://github.com/Web4application/RODAAI.git
 cd RODAAI
-cp .env.local .env
+
+cd .env.local .env
 docker-compose up --build
 
 git clone https://github.com/Web4application/enclov-AI.git
@@ -16,3 +17,8 @@ vercel deploy --prebuilt  # deploys from that build
 
 vercel env add team_bnSuCzLCbrlG4vo5dvRRaj0D
 vercel env add c776CzCNUv1dDy9PADHdVmZT
+# Build the image
+docker build -t roda-ai-api .
+
+# Run the container
+docker run -d -p 8000:8000 roda-ai-api
