@@ -1,3 +1,11 @@
+# Format
+black . && isort .
+
+# Migrate database
+alembic upgrade head
+
+# Run local server
+uvicorn app.main:app --reload
 
 git clone https://github.com/Web4application/RODAAI.git
 cd RODAAI
