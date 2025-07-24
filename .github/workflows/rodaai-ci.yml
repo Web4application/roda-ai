@@ -1,0 +1,89 @@
+name: Build, Test & Upload RodaAI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-test-upload:
+    runs-on: macos-latest
+    env:
+      APP_SCHEME: RodaAI
+
+    steps:
+      - name: 🔄 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🧹 Clean Derived Data
+        run: rm -rf ~/Library/Developer/Xcode/DerivedData
+
+      - name: 🛠️ Build macOS App
+        run: |
+          swift build -c release
+
+      - name: 🧪 Run Tests (iOS)
+        run: |
+          xcodebuild test \
+            -scheme $APP_SCHEME \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 14' \
+            ONLY_ACTIVE_ARCH=NO | xcpretty
+
+      - name: 📦 Archive iOS App
+        run: |
+          xcodebuild archive \
+            -scheme $APP_SCHEME \
+            -sdk iphoneos \
+            -archivePath $PWD/build/$APP_SCHEME.xcarchive \
+            -allowProvisioningUpdates \
+            CODE_SIGN_STYLE=Automatic
+
+      - name: 📤 Export IPA for TestFlight
+        run: |
+          cat <<EOF > ExportOptions.plist
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+          "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>app-store</string>
+            <key>signingStyle</key>
+            <string>automatic</string>
+            <key>stripSwiftSymbols</key>
+            <true/>
+            <key>compileBitcode</key>
+            <true/>
+          </dict>
+          </plist>
+          EOF
+
+          xcodebuild -exportArchive \
+            -archivePath $PWD/build/$APP_SCHEME.xcarchive \
+            -exportOptionsPlist ExportOptions.plist \
+            -exportPath $PWD/build/export
+
+      - name: 🛡️ Install Fastlane
+        run: |
+          sudo gem install fastlane
+
+      - name: 🚀 Upload to TestFlight via Fastlane
+        run: |
+          mkdir -p fastlane
+          echo "api_key = app_store_connect_api_key(
+            key_id: ENV['APP_STORE_API_KEY_ID'],
+            issuer_id: ENV['APP_STORE_API_ISSUER_ID'],
+            key: ENV['APP_STORE_API_KEY_CONTENT']
+          )
+
+          upload_to_testflight(
+            api_key: api_key,
+            ipa: 'build/export/$APP_SCHEME.ipa'
+          )" > fastlane/Fastfile
+          fastlane run upload_to_testflight
+        env:
+          APP_STORE_API_KEY_ID: ${{ secrets.APP_STORE_API_KEY_ID }}
+          APP_STORE_API_ISSUER_ID: ${{ secrets.APP_STORE_API_ISSUER_ID }}
+          APP_STORE_API_KEY_CONTENT: ${{ secrets.APP_STORE_API_KEY_CONTENT }}

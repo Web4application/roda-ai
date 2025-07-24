@@ -1,9 +1,9 @@
-git clone https://github.com/Web4application/RODAAI.git
-cd RODAAI
-cp .env.local .env
-docker-compose up --build
+npm install -r requirements.txt
+# Step 1: Build Docker image
+docker build -t roda-api .
 
-git clone https://github.com/Web4application/enclov-AI.git
-cd enclov-AI
+# Step 2: Run container
+docker run -d -p 8000:8000 roda-api
 
-docker-compose up --build
+# OR using Compose
+docker compose up --build
