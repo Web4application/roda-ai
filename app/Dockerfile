@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8-slim
+FROM python:3.13-slim
 
 # Set the working directory
 WORKDIR /app
@@ -18,4 +18,4 @@ ENV FLASK_APP=app.py
 EXPOSE 5000
 
 # Run the application
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=1.1.1.1"]

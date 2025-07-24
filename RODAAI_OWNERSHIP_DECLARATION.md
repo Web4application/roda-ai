@@ -25,10 +25,3 @@ RODAAI is a modular, Python-based AI and data science platform. Built with a cle
 - Speech-to-text and text-to-speech support via Google AI
 
 ---
-
-## Installation
-
-```bash
-git clone https://github.com/Web4application/RODAAI.git
-cd RODAAI
-# Follow FastAPI + Docker + PostgreSQL setup instructions here
