@@ -1,5 +1,5 @@
 # The Docker image that will be used to build your app
-image: node:14
+image: node:20
 
 # Functions that should be executed before the build script is run
 before_script:
@@ -18,3 +18,4 @@ pages:
     # This ensures that only pushes to the default branch will trigger
     # a pages deploy
     - if: '$CI_COMMIT_REF_NAME == "main"'
+
