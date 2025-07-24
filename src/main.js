@@ -1,3 +1,6 @@
+import Toast from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
+app.use(Toast)
 import { createApp } from 'vue'
 import App from './App.vue'
 
