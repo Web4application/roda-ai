@@ -3,7 +3,10 @@ npm install -r requirements.txt
 docker build -t roda-api .
 
 # Step 2: Run container
-docker run -d -p 8000:8000 roda-api
+docker run -d -p 8000:8000 roda-ai-api
 
 # OR using Compose
 docker compose up --build
+
+$ npm install
+$ npm run dev
