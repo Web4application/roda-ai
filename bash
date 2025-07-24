@@ -22,3 +22,6 @@ docker build -t roda-ai-api .
 
 # Run the container
 docker run -d -p 8000:8000 roda-ai-api
+
+az login
+az webapp up --name roda-ai-app --runtime "NODE|18-lts" --sku F1
