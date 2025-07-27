@@ -1,7 +1,7 @@
 steps:
   - label: "🚀 Build Docker Image"
     command:
-      - docker build -t roda-api .
+      - docker build -t roda-ai-api .
     agents:
       queue: "default"
 

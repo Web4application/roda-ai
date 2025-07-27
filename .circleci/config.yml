@@ -4,12 +4,12 @@ executors:
   roda-python:
     docker:
       - image: cimg/python:3.11
-    working_directory: ~/roda
+    working_directory: ~/roda-ai
 
   roda-node:
     docker:
-      - image: cimg/node:20.6
-    working_directory: ~/roda
+      - image: cimg/node:20.16.0
+    working_directory: ~/roda-ai
 
 jobs:
   api-tests:

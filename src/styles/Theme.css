@@ -1,0 +1,10 @@
+body {
+  background-color: #0d0d0d;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+a {
+  color: #00ffd0;
+}
