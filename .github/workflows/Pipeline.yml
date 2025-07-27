@@ -1,0 +1,36 @@
+steps:
+  - label: "🚀 Build Docker Image"
+    command:
+      - docker build -t roda-ai-api .
+    agents:
+      queue: "default"
+
+  - label: "🧪 Run Tests"
+    command:
+      - make test
+    plugins:
+      - test-collector#v1.0.0:
+          files: "test-results/test-data-*.json"
+          format: "json"
+    artifact_paths:
+      - "test-results/**/*"
+    agents:
+      queue: "default"
+
+  - wait
+
+  - label: "📦 Publish Docker Image"
+    command:
+      - echo "--- Logging in to Docker Hub"
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker tag roda-api $DOCKER_USERNAME/roda-api:latest
+      - docker push $DOCKER_USERNAME/roda-api:latest
+    agents:
+      queue: "default"
+    if: build.branch == "main"
+
+  - label: "✅ Notify Success"
+    command: "echo 'Build succeeded ✅'"
+    agents:
+      queue: "default"
+    if: build.state == "passed"

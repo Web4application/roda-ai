@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RODA AI Contact Form</title>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S8TKPZXH47"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-S8TKPZXH47');
+  </script>
+</head>
+<body>
+
+  <!-- Main form -->
+  <form id="lead-form">
+    <h3>Contact RODA AI</h3>
+    <input name="name" placeholder="Your Name" required /><br/>
+    <input name="email" type="email" placeholder="Your Email" required /><br/>
+    <textarea name="message" placeholder="Your Message" required></textarea><br/>
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Response container -->
+  <div id="auto-reply-output" style="margin-top: 20px;"></div>
+
+  <!-- Minimal fallback form -->
+  <div id="minimal-form" style="display: none; padding: 20px; background: #f0f0f0; border: 1px solid #ccc;">
+    <h3>Quick Contact Form</h3>
+    <input type="text" placeholder="Your Name" id="fallback-name" required /><br/>
+    <span id="name-error" style="color: red; display: none;">Name is required.</span><br/>
+
+    <input type="email" placeholder="Your Email" id="fallback-email" required /><br/>
+    <span id="email-error" style="color: red; display: none;">Valid email required.</span><br/>
+
+    <button id="submit-minimal-form">Submit</button>
+  </div>
+
+  <button id="fallback-btn">Use Fallback Form</button>
+
+  <script>
+    const ENV = "production";
+    const fallbackBtn = document.getElementById("fallback-btn");
+    const fallbackForm = document.getElementById("minimal-form");
+    const mainForm = document.getElementById("lead-form");
+
+    // Main GPT-powered form submission
+    mainForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = {
+        name: mainForm.name.value,
+        email: mainForm.email.value,
+        message: mainForm.message.value,
+      };
+
+      try {
+        const res = await fetch("https://your-fastapi-backend.com/auto_reply", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+        document.getElementById("auto-reply-output").innerText = result.reply || "Thank you for your message!";
+        gtag('event', 'form_submission', {
+          event_category: 'Lead Form',
+          event_label: 'Main GPT Form',
+          value: 1
+        });
+
+      } catch (error) {
+        console.error("Main form failed:", error);
+        alert("Main form failed. Loading fallback.");
+        fallbackForm.style.display = "block";
+        mainForm.style.display = "none";
+        gtag('event', 'form_fallback', {
+          event_category: 'Lead Form',
+          event_label: 'Fallback Triggered',
+          value: 1
+        });
+      }
+    });
+
+    // Minimal form validation & submission
+    document.getElementById("submit-minimal-form").addEventListener("click", () => {
+      const name = document.getElementById("fallback-name").value.trim();
+      const email = document.getElementById("fallback-email").value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      let valid = true;
+      document.getElementById("name-error").style.display = name ? "none" : "inline";
+      document.getElementById("email-error").style.display = emailRegex.test(email) ? "none" : "inline";
+
+      if (!name || !emailRegex.test(email)) {
+        valid = false;
+      }
+
+      if (valid) {
+        fetch("/submit-minimal-form", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email }),
+        })
+        .then(() => {
+          alert("Form submitted successfully!");
+          fallbackForm.style.display = "none";
+        })
+        .catch(() => {
+          alert("Submission failed. Please try again later.");
+        });
+      }
+    });
+
+    fallbackBtn.addEventListener("click", () => {
+      fallbackForm.style.display = "block";
+      mainForm.style.display = "none";
+      gtag('event', 'form_fallback', {
+        event_category: 'Lead Form',
+        event_label: 'Manual Fallback Clicked',
+        value: 1
+      });
+    });
+  </script>
+</body>
+</html>

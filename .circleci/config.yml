@@ -1,0 +1,82 @@
+version: 2.1
+
+executors:
+  roda-python:
+    docker:
+      - image: cimg/python:3.11
+    working_directory: ~/roda-ai
+
+  roda-node:
+    docker:
+      - image: cimg/node:20.16.0
+    working_directory: ~/roda-ai
+
+jobs:
+  api-tests:
+    executor: roda-python
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: |
+            python -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      - run:
+          name: Run API Tests
+          command: |
+            . venv/bin/activate
+            pytest tests/api
+
+  ai-pipeline:
+    executor: roda-python
+    steps:
+      - checkout
+      - run:
+          name: Install AI Dependencies
+          command: |
+            python -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      - run:
+          name: Run AI Model Training
+          command: |
+            . venv/bin/activate
+            python train_model.py
+
+  deploy-api:
+    executor: roda-node
+    steps:
+      - checkout
+      - run:
+          name: Deploy API to Render/Fly.io/YourServer
+          command: |
+            echo "🚀 Deploying API backend..."
+            # Replace with your deploy script or CLI
+            bash scripts/deploy-api.sh
+
+  deploy-ui:
+    executor: roda-node
+    steps:
+      - checkout
+      - run:
+          name: Deploy Web UI to GitHub Pages
+          command: |
+            echo "🚀 Deploying Web UI..."
+            npm install
+            npm run build
+            npx gh-pages -d dist
+
+workflows:
+  roda-full-pipeline:
+    jobs:
+      - api-tests
+      - ai-pipeline:
+          requires:
+            - api-tests
+      - deploy-api:
+          requires:
+            - ai-pipeline
+      - deploy-ui:
+          requires:
+            - api-tests
